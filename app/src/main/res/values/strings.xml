@@ -1,0 +1,47 @@
+<resources>
+
+
+    <string name="app_name">Civil Service Reviewer</string>
+    <string name="Questions">Questions</string>
+    <string name="submit">Submit</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_stat">Statistics</string>
+    <string name="menu_games">FUN GAMES</string>
+    <string name="next">NEXT</string>
+    <string name="stl">ListView</string>
+    <string name="REV">REVIEW YOUR ANSWERS BELOW...</string>
+    <string name="title_activity_visitornavi">visitornavi</string>
+    <string name="vis_nav">Welcome to Civil Service Reviewer  2020</string>
+    <string name="vis_nav_sub">Register to view the full version of this android application.</string>
+    <string name="menu_abouts">Abouts</string>
+    <string name="menu_books">Books</string>
+    <string name="menu_register">Register</string>
+    <string name="title_activity_user_navi">User Navigation</string>
+    <string name="pn">Phone Number</string>
+    <string name="name">Name</string>
+    <string name="stat">Statistics</string>
+    <string name="logout">Log Out</string>
+    <string name="exit">Exit</string>
+    <string name="Books">Reference Section</string>
+    <string name="tic">Reset the game.</string>
+    <string name="registertext">Register</string>
+    <string name="login_frag">Log In</string>
+    <string name="get_information">Get Information</string>
+    <string name="hard_soft_info">Hardware and Software Information</string>
+    <string name="serial">SERIAL: </string>
+    <string name="model">MODEL: </string>
+    <string name="id">ID: </string>
+    <string name="manufacturer">MANUFACTURER: </string>
+    <string name="brand">BRAND: </string>
+    <string name="type">TYPE: </string>
+    <string name="user">USER: </string>
+    <string name="base">BASE: </string>
+    <string name="incremental">INCREMENTAL: </string>
+    <string name="sdk">SDK: </string>
+    <string name="board">BOARD: </string>
+    <string name="host">HOST: </string>
+    <string name="fingerprint">FINGERPRINT: </string>
+    <string name="versioncode">VERSION CODE: </string>
+
+</resources>

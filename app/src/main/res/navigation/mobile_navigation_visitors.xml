@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.psulccomsci.civilservicereviewer.ui.Vis_home.HomeFragment_Vis"
+        android:label="@string/menu_home"
+        tools:layout="@layout/home_fragment" />
+
+    <fragment
+        android:id="@+id/nav_abouts"
+        android:name="com.psulccomsci.civilservicereviewer.ui.abouts.Abouts"
+        android:label="@string/menu_abouts"
+        tools:layout="@layout/abouts_fragment" />
+
+
+    <fragment
+        android:id="@+id/nav_books"
+        android:name="com.psulccomsci.civilservicereviewer.ui.books.Books"
+        android:label="@string/menu_books"
+        tools:layout="@layout/books_fragment" />
+
+    <fragment
+        android:id="@+id/nav_register"
+        android:name="com.psulccomsci.civilservicereviewer.ui.register.Register"
+        android:label="@string/menu_register"
+        tools:layout="@layout/register_fragment" />
+
+</navigation>

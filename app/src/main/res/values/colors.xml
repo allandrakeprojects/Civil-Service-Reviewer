@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#ffff</color>
+    <color name="colorPrimaryDark">#116699</color>
+    <color name="colorAccent">#990000</color>
+    <color name="drawer_font">#ffffff</color>
+    <color name="white">#ffffff</color>
+    <color name="transparent">#0000FFFF</color>
+    <color name="gradientstart">#116699</color>
+    <color name="gradientend">#23A7D8</color>
+    <color name="fabcolor">#000000</color>
+</resources>

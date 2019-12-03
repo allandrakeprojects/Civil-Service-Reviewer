@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.psulccomsci.civilservicereviewer">
+
+    <uses-feature
+        android:name="android.hardware.sensor.compass"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".answerless"></activity>
+        <activity android:name=".tictacs" />
+        <activity android:name=".calcutext" />
+        <activity android:name=".ListOfScore" />
+        <activity android:name=".start">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".stat_list_support" />
+        <activity android:name=".ExamTitle" />
+        <activity android:name=".frontforexam" />
+        <activity android:name=".frontforexamnp" />
+        <activity android:name=".support_reg_frag"  />
+        <activity android:name=".graph" />
+        <activity android:name=".fabsolo">
+            <intent-filter>
+                <action android:name="android.intent.action.fabsolo" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".user_navi"
+            android:label="@string/title_activity_user_navi"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".visitornavi"
+            android:label="@string/title_activity_visitornavi"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysVisible"/>
+        <activity android:name=".preload" />
+        <activity android:name=".login_load" />
+        <activity android:name=".preload_exam" />
+        <activity android:name=".preload_examnp" />
+        <activity android:name=".statlist" />
+        <activity android:name=".statview" />
+        <activity android:name=".reader" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".ReanswerActivity" />
+        <activity android:name=".result" />
+        <activity android:name=".SeeanswerActivity" />
+        <activity android:name=".Mathematics" />
+        <activity android:name=".Analogy" />
+        <activity android:name=".Vocabulary" />
+        <activity android:name=".Grammar" />
+        <activity android:name=".Clerical" />
+        <activity android:name=".PhilippineConstitution" />
+        <activity android:name=".NumericalReasoning" />
+        <activity android:name=".ExamTitle2" />
+        <activity android:name=".ExamTitle3" />
+        <activity android:name=".ExamTitle4" />
+        <activity android:name=".ExamTitle5" />
+        <activity android:name=".ExamTitle6" />
+        <activity android:name=".ExamTitle7" />
+        <activity android:name=".test1ExamTitle" />
+        <activity android:name=".test2ExamTitle" />
+        <activity android:name=".test3ExamTitle" />
+        <activity android:name=".test4ExamTitle" />
+        <activity android:name=".test5ExamTitle" />
+        <activity android:name=".test6ExamTitle" />
+        <activity android:name=".test7ExamTitle" />
+        <activity android:name=".test1" />
+        <activity android:name=".test2" />
+        <activity android:name=".test3" />
+        <activity android:name=".test4" />
+        <activity android:name=".test5" />
+        <activity android:name=".test6" />
+        <activity android:name=".test7" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+    </application>
+
+</manifest>

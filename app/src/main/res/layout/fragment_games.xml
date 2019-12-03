@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+
+
+
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="@drawable/bg3"
+    tools:context=".ui.games.Games">
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:layout_row="0"
+        android:layout_column="0"
+        android:background="@drawable/gamehead" />
+
+    <ImageButton
+        android:id="@+id/tictactoe"
+        android:layout_width="250dp"
+        android:layout_height="330dp"
+        android:layout_row="1"
+        android:layout_column="0"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/tictaccon" />
+
+
+</GridLayout>
