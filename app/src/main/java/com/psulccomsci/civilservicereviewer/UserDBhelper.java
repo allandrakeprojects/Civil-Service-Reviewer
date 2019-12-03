@@ -2,8 +2,11 @@ package com.psulccomsci.civilservicereviewer;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.psulccomsci.civilservicereviewer.ui.register.User;
 
 
 public class UserDBhelper extends SQLiteOpenHelper {
@@ -45,7 +48,19 @@ public class UserDBhelper extends SQLiteOpenHelper {
         } else {
             return true;
         }
-
-
     }
+
+    public int checkUser(User us)
+    {
+        int id=-1;
+        SQLiteDatabase db=this.getReadableDatabase();
+        Cursor cursor=db.rawQuery("SELECT id FROM user WHERE name=? AND password=?",new String[]{us.getName(),us.getPassword()});
+        if(cursor.getCount()>0) {
+            cursor.moveToFirst();
+            id=cursor.getInt(0);
+            cursor.close();
+        }
+        return id;
+    }
+
 }

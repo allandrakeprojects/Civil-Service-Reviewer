@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.OrientationEventListener;
 import android.view.View;
@@ -135,31 +136,58 @@ public class Register extends Fragment {
                 log.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        while (j<i){
-                            cursor1.moveToFirst();
-                            cursor2.moveToFirst();
-                            sregname = cursor1.getString(j);
-                            spassword = cursor2.getString(j);
-                        if (!name.getText().toString().isEmpty()&&!pass.getText().toString().isEmpty()){
-                            if (name.getText().toString().equals(sregname)&&pass.getText().toString().equals(spassword)){
-                                Intent intent = new Intent(getContext(), user_navi.class);
-                                startActivity(intent);
-                                userDBhelper.insert(sregname, "", spassword, information);
-                                Toast.makeText(getContext(),"Welcome back "+sregname+"!!!",Toast.LENGTH_SHORT).show();
-                            }else if(name.getText().toString().equals("user")&&pass.getText().toString().equals("1234")){
-                                Intent intent = new Intent(getContext(), user_navi.class);
-                                startActivity(intent);
-                                Toast.makeText(getContext(),"Successfully Log In as Test User 1 !!!",Toast.LENGTH_SHORT).show();
-                            }else{
-                                Toast.makeText(getContext(),"User does not exist!!!",Toast.LENGTH_SHORT).show();
+
+                        if(!name.getText().toString().isEmpty()&&!pass.getText().toString().isEmpty()){
+                            int id = checkUser(new User(name.getText().toString(), pass.getText().toString()));
+                            if(id == -1)
+                            {
+                                Toast.makeText(getContext(),"User Does Not Exist",Toast.LENGTH_SHORT).show();
                             }
-                        }else{Toast.makeText(getContext(),"Please fill-up necessary information!!!",Toast.LENGTH_SHORT).show();
-                        } j=j+1;}
+                            else
+                            {
+                                Intent intent = new Intent(getContext(), user_navi.class);
+                                startActivity(intent);
+                                Toast.makeText(getContext(),"Welcome back "+name.getText().toString()+"!!!",Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(getContext(),"Please fill-up necessary information!!!",Toast.LENGTH_SHORT).show();
+                        }
+
+//                        while (j<i){
+//                            cursor1.moveToFirst();
+//                            cursor2.moveToFirst();
+//                            sregname = cursor1.getString(0);
+//                            spassword = cursor2.getString(0);
+//
+//                            if (!name.getText().toString().isEmpty()&&!pass.getText().toString().isEmpty()){
+//                                if (name.getText().toString().equals(sregname)&&pass.getText().toString().equals(spassword)){
+//                                    Intent intent = new Intent(getContext(), user_navi.class);
+//                                    startActivity(intent);
+//                                    userDBhelper.insert(sregname, "", spassword, information);
+//                                    Toast.makeText(getContext(),"Welcome back "+sregname+"!!!",Toast.LENGTH_SHORT).show();
+//                                } else if(name.getText().toString().equals("user")&&pass.getText().toString().equals("1234")){
+//                                    Intent intent = new Intent(getContext(), user_navi.class);
+//                                    startActivity(intent);
+//                                    Toast.makeText(getContext(),"Successfully Log In as Test User 1 !!!",Toast.LENGTH_SHORT).show();
+//                                } else{
+//                                    Toast.makeText(getContext(),"User does not exist!!!",Toast.LENGTH_SHORT).show();
+//                                }
+//                            } else {
+//                                Toast.makeText(getContext(),"Please fill-up necessary information!!!",Toast.LENGTH_SHORT).show();
+//                            }
+//
+//
+//                            j=j+1;
+//                        }
                     }
                 });
             }
         });
 
+    }
+
+    public int checkUser(User user) {
+        return userDBhelper.checkUser(user);
     }
 
     public static String nameinfo(){
