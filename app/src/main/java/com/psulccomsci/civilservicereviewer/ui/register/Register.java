@@ -111,6 +111,7 @@ public class Register extends Fragment {
                             phones = pn.getText().toString();
                             passes = pass.getText().toString();
                             Intent intent = new Intent(getContext(), login_load.class);
+                            intent.putExtra("currentUser", names);
                             startActivity(intent);
                         }else{Toast.makeText(getContext(),"Please fill-up necessary information!!!",Toast.LENGTH_SHORT).show();
                         }
@@ -146,6 +147,7 @@ public class Register extends Fragment {
                             else
                             {
                                 Intent intent = new Intent(getContext(), user_navi.class);
+                                intent.putExtra("currentUser", name.getText().toString());
                                 startActivity(intent);
                                 Toast.makeText(getContext(),"Welcome back "+name.getText().toString()+"!!!",Toast.LENGTH_SHORT).show();
                             }

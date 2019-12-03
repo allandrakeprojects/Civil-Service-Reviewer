@@ -17,6 +17,7 @@ public class UserDBhelper extends SQLiteOpenHelper {
     public static final String col_3 = "Phone";
     public static final String col_4 = "Password";
     public static final String col_5 = "BaseInfo";
+    public static final String col_6 = "Books";
 
 
     public UserDBhelper(Context context) {
@@ -25,7 +26,7 @@ public class UserDBhelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table "+table_name+" (ID INTEGER  PRIMARY KEY AUTOINCREMENT, Name TEXT, Phone TEXT, Password TEXT, BaseInfo TEXT)");
+        db.execSQL("create table "+table_name+" (ID INTEGER  PRIMARY KEY AUTOINCREMENT, Name TEXT, Phone TEXT, Password TEXT, BaseInfo TEXT, Books TEXT)");
 
     }
 
@@ -43,6 +44,18 @@ public class UserDBhelper extends SQLiteOpenHelper {
         contentValues.put(col_4, Password);
         contentValues.put(col_5, BaseInfo);
         long result = db.insert(table_name, null, contentValues);
+        if (result == -1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public boolean update(String Name, String Books){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(col_6, Books);
+        long result = db.update(table_name, contentValues, "Name= + '" + Name + "'", null);
         if (result == -1) {
             return false;
         } else {

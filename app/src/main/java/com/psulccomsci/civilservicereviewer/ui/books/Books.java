@@ -20,11 +20,13 @@ import android.widget.ListView;
 import com.psulccomsci.civilservicereviewer.R;
 import com.psulccomsci.civilservicereviewer.reader;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class Books extends Fragment {
     private BooksViewModel mViewModel;
     private static String book;
+    private static File file;
 
     public static Books newInstance() {
         return new Books();
@@ -84,8 +86,14 @@ public class Books extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
+
     public static String title(){
         return book;
+
+    }
+
+    public static File file(){
+        return file;
 
     }
 
