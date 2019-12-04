@@ -48,4 +48,5 @@ dependencies {
 
     implementation 'com.nbsp:library:1.8'
     implementation 'com.karumi:dexter:5.0.0'
+    implementation 'com.github.clans:fab:1.6.4'
 }
