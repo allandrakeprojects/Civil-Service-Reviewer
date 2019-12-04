@@ -86,6 +86,16 @@ public class Mathematics extends AppCompatActivity{
             public void onTick(long millisUntilFinished) {
                 hour.setText(millisUntilFinished/60000+" : ");
                 remin = millisUntilFinished;
+
+                int minutes = Integer.parseInt(hour.getText().toString().replace(" : ", ""));
+                long millis = minutes * 60 * 1000;
+
+                // Shared Preference ------------
+                SharedPreferences sharedPref = getSharedPreferences("mypref", 0);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putLong("currentTime", millis);
+                editor.commit();
+                // End ------------
             }
             @Override
             public void onFinish() {

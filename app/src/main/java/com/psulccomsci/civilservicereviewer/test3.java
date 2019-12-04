@@ -82,11 +82,25 @@ public class test3 extends AppCompatActivity{
             }
 
         };
-        countDownTimermin = new CountDownTimer(3600000, 1000) {
+        // Shared Preference ------------
+        SharedPreferences sharedPref = getSharedPreferences("mypref", 0);
+        long currentTime = sharedPref.getLong("currentTime", 3600000);
+        // End ------------
+        countDownTimermin = new CountDownTimer(currentTime, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 hour.setText(millisUntilFinished/60000+" : ");
                 remin = millisUntilFinished;
+
+                int minutes = Integer.parseInt(hour.getText().toString().replace(" : ", ""));
+                long millis = minutes * 60 * 1000;
+
+                // Shared Preference ------------
+                SharedPreferences sharedPref = getSharedPreferences("mypref", 0);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putLong("currentTime", millis);
+                editor.commit();
+                // End ------------
             }
             @Override
             public void onFinish() {

@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -71,7 +72,10 @@ public class test1 extends AppCompatActivity{
             @Override
             public void onTick(long millisUntilFinished) {
                 if(millisUntilFinished>10000){
-                timerText.setText(millisUntilFinished/1000+""); }else {timerText.setText("0"+millisUntilFinished/1000+"");}
+                    timerText.setText(millisUntilFinished/1000+"");
+                }else {
+                    timerText.setText("0"+millisUntilFinished/1000+"");
+                }
                 rem = millisUntilFinished;
             }
             @Override
@@ -85,12 +89,23 @@ public class test1 extends AppCompatActivity{
             public void onTick(long millisUntilFinished) {
                 hour.setText(millisUntilFinished/60000+" : ");
                 remin = millisUntilFinished;
+
+                int minutes = Integer.parseInt(hour.getText().toString().replace(" : ", ""));
+                long millis = minutes * 60 * 1000;
+
+                // Shared Preference ------------
+                SharedPreferences sharedPref = getSharedPreferences("mypref", 0);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putLong("currentTime", millis);
+                editor.commit();
+                // End ------------
             }
             @Override
             public void onFinish() {
                 hour.setText("00 : ");
             }
         };
+
         countDownTimer.start();
         countDownTimermin.start();
 
