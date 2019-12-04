@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.TextViewCompat;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Mathematics extends AppCompatActivity{
 
@@ -108,23 +109,27 @@ public class Mathematics extends AppCompatActivity{
         sqLiteDatabase = databaseHelper.getReadableDatabase();
         AA = databaseHelper.getdata(sqLiteDatabase);
         db = openHelper.getWritableDatabase();
+
+        int min = 1;
+        int max = 49;
+        int random = new Random().nextInt((max - min) + 1) + min;
         ANS = db.rawQuery(" SELECT "+ dbhelper.col_mathAns+" FROM "+ dbhelper.table_answer + " where " +dbhelper.col_ans_1
-                +" = "+i,null);
+                +" = "+random,null);
         AA = db.rawQuery(" SELECT "+ dbhelper.col_choice_1+" FROM "+ dbhelper.table_mathematics + " where " +dbhelper.col_choice_id
-                +" = "+i,null);
+                +" = "+random,null);
         BB = db.rawQuery(" SELECT "+ dbhelper.col_choice_2+" FROM "+ dbhelper.table_mathematics + " where " +dbhelper.col_choice_id
-                +" = "+i,null);
+                +" = "+random,null);
         CC = db.rawQuery(" SELECT "+ dbhelper.col_choice_3+" FROM "+ dbhelper.table_mathematics + " where " +dbhelper.col_choice_id
-                +" = "+i,null);
+                +" = "+random,null);
         DD = db.rawQuery(" SELECT "+ dbhelper.col_choice_4+" FROM "+ dbhelper.table_mathematics + " where " +dbhelper.col_choice_id
-                +" = "+i,null);
+                +" = "+random,null);
         EE = db.rawQuery(" SELECT "+ dbhelper.col_choice_5+" FROM "+ dbhelper.table_mathematics + " where " +dbhelper.col_choice_id
-                +" = "+i,null);
+                +" = "+random,null);
         QQ = db.rawQuery(" SELECT "+ dbhelper.col_mathQ+" FROM "+ dbhelper.table_quest + " where " +dbhelper.col_quest_1
-                +" = "+i,null);
+                +" = "+random,null);
         //This area is for adding the generated Math solutions, but for now temporary unavailable.
         solN = db.rawQuery(" SELECT "+ dbhelper.col_solN+" FROM "+ dbhelper.table_mathematics + " where " +dbhelper.col_choice_id
-                        +" = "+i,null);
+                        +" = "+random,null);
         solN.moveToFirst();solution = solN.getString(0);
 
         AA.moveToFirst();BB.moveToFirst();CC.moveToFirst();DD.moveToFirst();EE.moveToFirst();QQ.moveToFirst();ANS.moveToFirst();
@@ -168,20 +173,27 @@ public class Mathematics extends AppCompatActivity{
                 if (i<50) {
                     i++;
 
+                    int min = 1;
+                    int max = 49;
+                    int random = new Random().nextInt((max - min) + 1) + min;
                     ANS = db.rawQuery(" SELECT "+ dbhelper.col_mathAns+" FROM "+ dbhelper.table_answer + " where " +dbhelper.col_ans_1
-                            +" = "+i,null);
+                            +" = "+random,null);
                     AA = db.rawQuery(" SELECT "+ dbhelper.col_choice_1+" FROM "+ dbhelper.table_mathematics + " where " +dbhelper.col_choice_id
-                            +" = "+i,null);
+                            +" = "+random,null);
                     BB = db.rawQuery(" SELECT "+ dbhelper.col_choice_2+" FROM "+ dbhelper.table_mathematics + " where " +dbhelper.col_choice_id
-                            +" = "+i,null);
+                            +" = "+random,null);
                     CC = db.rawQuery(" SELECT "+ dbhelper.col_choice_3+" FROM "+ dbhelper.table_mathematics + " where " +dbhelper.col_choice_id
-                            +" = "+i,null);
+                            +" = "+random,null);
                     DD = db.rawQuery(" SELECT "+ dbhelper.col_choice_4+" FROM "+ dbhelper.table_mathematics + " where " +dbhelper.col_choice_id
-                            +" = "+i,null);
+                            +" = "+random,null);
                     EE = db.rawQuery(" SELECT "+ dbhelper.col_choice_5+" FROM "+ dbhelper.table_mathematics + " where " +dbhelper.col_choice_id
-                            +" = "+i,null);
+                            +" = "+random,null);
                     QQ = db.rawQuery(" SELECT "+ dbhelper.col_mathQ+" FROM "+ dbhelper.table_quest + " where " +dbhelper.col_quest_1
-                            +" = "+i,null);
+                            +" = "+random,null);
+                    solN = db.rawQuery(" SELECT "+ dbhelper.col_solN+" FROM "+ dbhelper.table_mathematics + " where " +dbhelper.col_choice_id
+                            +" = "+random,null);
+                    solN.moveToFirst();solution = solN.getString(0);
+
                 AA.moveToFirst();BB.moveToFirst();CC.moveToFirst();DD.moveToFirst();EE.moveToFirst();QQ.moveToFirst();ANS.moveToFirst();
                 A = AA.getString(0);B = BB.getString(0);C = CC.getString(0);D = DD.getString(0);E = EE.getString(0);Q = QQ.getString(0);ans = ANS.getString(0);
                 first.setText(A);second.setText(B);third.setText(C);fourth.setText(D);fifth.setText(E);quest.setText(Q);
@@ -219,24 +231,33 @@ public class Mathematics extends AppCompatActivity{
                         }else{
                             restext=text+"  - Wrong";
                             compare.add(restext);
+                            keytext =ans+"\n\n"+"The solution is shown below."+"\n\n"+solution;
                         }
 
                     if (i<50) {
                         i++;
+
+                        int min = 1;
+                        int max = 49;
+                        int random = new Random().nextInt((max - min) + 1) + min;
                         ANS = db.rawQuery(" SELECT "+ dbhelper.col_mathAns+" FROM "+ dbhelper.table_answer + " where " +dbhelper.col_ans_1
-                                +" = "+i,null);
+                                +" = "+random,null);
                         AA = db.rawQuery(" SELECT "+ dbhelper.col_choice_1+" FROM "+ dbhelper.table_mathematics + " where " +dbhelper.col_choice_id
-                                +" = "+i,null);
+                                +" = "+random,null);
                         BB = db.rawQuery(" SELECT "+ dbhelper.col_choice_2+" FROM "+ dbhelper.table_mathematics + " where " +dbhelper.col_choice_id
-                                +" = "+i,null);
+                                +" = "+random,null);
                         CC = db.rawQuery(" SELECT "+ dbhelper.col_choice_3+" FROM "+ dbhelper.table_mathematics + " where " +dbhelper.col_choice_id
-                                +" = "+i,null);
+                                +" = "+random,null);
                         DD = db.rawQuery(" SELECT "+ dbhelper.col_choice_4+" FROM "+ dbhelper.table_mathematics + " where " +dbhelper.col_choice_id
-                                +" = "+i,null);
+                                +" = "+random,null);
                         EE = db.rawQuery(" SELECT "+ dbhelper.col_choice_5+" FROM "+ dbhelper.table_mathematics + " where " +dbhelper.col_choice_id
-                                +" = "+i,null);
+                                +" = "+random,null);
                         QQ = db.rawQuery(" SELECT "+ dbhelper.col_mathQ+" FROM "+ dbhelper.table_quest + " where " +dbhelper.col_quest_1
-                                +" = "+i,null);
+                                +" = "+random,null);
+                        solN = db.rawQuery(" SELECT "+ dbhelper.col_solN+" FROM "+ dbhelper.table_mathematics + " where " +dbhelper.col_choice_id
+                                +" = "+random,null);
+                        solN.moveToFirst();solution = solN.getString(0);
+                        
                     AA.moveToFirst();BB.moveToFirst();CC.moveToFirst();DD.moveToFirst();EE.moveToFirst();QQ.moveToFirst();ANS.moveToFirst();
                     A = AA.getString(0);B = BB.getString(0);C = CC.getString(0);D = DD.getString(0);E = EE.getString(0);Q = QQ.getString(0);ans = ANS.getString(0);
                     first.setText(A);second.setText(B);third.setText(C);fourth.setText(D);fifth.setText(E);quest.setText(Q);
@@ -259,6 +280,7 @@ public class Mathematics extends AppCompatActivity{
         Noanswer noanswer = new Noanswer();
         noanswer.show(getSupportFragmentManager(), "Noanswer");
     }
+
     public void Mathchecking(){
         MathCorrect correct = new MathCorrect();
         correct.show(getSupportFragmentManager(), "correct");

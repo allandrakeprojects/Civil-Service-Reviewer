@@ -18,7 +18,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 
 @SuppressWarnings("unchecked")
-public class result extends AppCompatActivity {
+public class result_np extends AppCompatActivity {
 
     ListView listView;
     TextView textView;
@@ -36,8 +36,8 @@ public class result extends AppCompatActivity {
         setContentView(R.layout.activity_result);
         selectedList=MainActivity.selectedlist();
         fab = findViewById(R.id.fab);
-        listItem = NumericalReasoning.result();
-        listItem2 = NumericalReasoning.result();
+        listItem = test7.result_np();
+        listItem2 = test7.result_np();
         listView = findViewById(R.id.listView);
         textView= findViewById(R.id.stl);
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
@@ -47,8 +47,8 @@ public class result extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                listItem = NumericalReasoning.subans();
-                listItem2 = NumericalReasoning.subans();
+                listItem = test7.subans();
+                listItem2 = test7.subans();
                 // TODO Auto-generated method stub
                 i=position;
                 listItem=listItem2;

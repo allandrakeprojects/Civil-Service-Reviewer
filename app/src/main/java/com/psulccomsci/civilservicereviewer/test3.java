@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class test3 extends AppCompatActivity{
 
@@ -27,7 +29,7 @@ public class test3 extends AppCompatActivity{
     SQLiteDatabase db;
     ScoreDBHelper scoreDBHelper;
     RadioButton first,second, third, fourth, fifth;
-    dbhelper databaseHelper;
+    npdbhelper databaseHelper;
     SQLiteDatabase sqLiteDatabase;
     Cursor AA, BB, CC, DD, EE,QQ, ANS, solN;
     String A, B, C, D, E, Q, ans,com, solution;
@@ -59,6 +61,10 @@ public class test3 extends AppCompatActivity{
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
 
         super.onCreate(savedInstanceState);
+        compare = test2.result_np();
+        for (String member : compare){
+            Log.i("Member name: ", member);
+        }
         setContentView(R.layout.activity_main);
         timerText = findViewById(R.id.timer);
         hour = findViewById(R.id.hour);
@@ -100,27 +106,31 @@ public class test3 extends AppCompatActivity{
         fourth = findViewById(R.id.radioButton4);
         fifth = findViewById(R.id.radioButton5);
         submit = findViewById(R.id.submit);
-        openHelper = new dbhelper(this);
+        openHelper = new npdbhelper(this);
         next = findViewById(R.id.next);
 
-        databaseHelper = new dbhelper(getApplicationContext());
+        databaseHelper = new npdbhelper(getApplicationContext());
         sqLiteDatabase = databaseHelper.getReadableDatabase();
         AA = databaseHelper.getdata(sqLiteDatabase);
         db = openHelper.getWritableDatabase();
+
+        int min = 1;
+        int max = 9;
+        int random = new Random().nextInt((max - min) + 1) + min;
         ANS = db.rawQuery(" SELECT "+ npdbhelper.col_readcomAns+" FROM "+ npdbhelper.table_answer + " where " +npdbhelper.col_ans_1
-                +" = "+i,null);
+                +" = "+random,null);
         AA = db.rawQuery(" SELECT "+ npdbhelper.col_choice_1+" FROM "+ npdbhelper.table_readcom + " where " +npdbhelper.col_choice_id
-                +" = "+i,null);
+                +" = "+random,null);
         BB = db.rawQuery(" SELECT "+ npdbhelper.col_choice_2+" FROM "+ npdbhelper.table_readcom + " where " +npdbhelper.col_choice_id
-                +" = "+i,null);
+                +" = "+random,null);
         CC = db.rawQuery(" SELECT "+ npdbhelper.col_choice_3+" FROM "+ npdbhelper.table_readcom + " where " +npdbhelper.col_choice_id
-                +" = "+i,null);
+                +" = "+random,null);
         DD = db.rawQuery(" SELECT "+ npdbhelper.col_choice_4+" FROM "+ npdbhelper.table_readcom + " where " +npdbhelper.col_choice_id
-                +" = "+i,null);
+                +" = "+random,null);
         EE = db.rawQuery(" SELECT "+ npdbhelper.col_choice_5+" FROM "+ npdbhelper.table_readcom + " where " +npdbhelper.col_choice_id
-                +" = "+i,null);
+                +" = "+random,null);
         QQ = db.rawQuery(" SELECT "+ npdbhelper.col_readcomQ+" FROM "+ npdbhelper.table_quest + " where " +npdbhelper.col_quest_1
-                +" = "+i,null);
+                +" = "+random,null);
 
         AA.moveToFirst();BB.moveToFirst();CC.moveToFirst();DD.moveToFirst();EE.moveToFirst();QQ.moveToFirst();ANS.moveToFirst();
         A = AA.getString(0);B = BB.getString(0);C = CC.getString(0);D = DD.getString(0);E = EE.getString(0);Q = QQ.getString(0);ans = ANS.getString(0);
@@ -140,7 +150,7 @@ public class test3 extends AppCompatActivity{
                 text = radioButton.getText().toString();
                 textdata = radioButton.getText().toString();
                 String x = radioButton.getText().toString();
-                databaseHelper = new dbhelper(getApplicationContext());
+                databaseHelper = new npdbhelper(getApplicationContext());
                 sqLiteDatabase = databaseHelper.getReadableDatabase();
                 AA = databaseHelper.getdata(sqLiteDatabase);
                 db = openHelper.getWritableDatabase();
@@ -158,32 +168,35 @@ public class test3 extends AppCompatActivity{
                     }else{
                         restext=text+"  - Wrong";
                         compare.add(restext);
-                        keytext =ans+"\n\n"+"The solution is shown below."+"\n\n"+solution;
+                        keytext =ans;
+                        //+"\n\n"+"The solution is shown below."+"\n\n"+solution
                     }
                 if (i<10) {
                     i++;
 
+                    int min = 1;
+                    int max = 9;
+                    int random = new Random().nextInt((max - min) + 1) + min;
                     ANS = db.rawQuery(" SELECT "+ npdbhelper.col_readcomAns+" FROM "+ npdbhelper.table_answer + " where " +npdbhelper.col_ans_1
-                            +" = "+i,null);
+                            +" = "+random,null);
                     AA = db.rawQuery(" SELECT "+ npdbhelper.col_choice_1+" FROM "+ npdbhelper.table_readcom + " where " +npdbhelper.col_choice_id
-                            +" = "+i,null);
+                            +" = "+random,null);
                     BB = db.rawQuery(" SELECT "+ npdbhelper.col_choice_2+" FROM "+ npdbhelper.table_readcom + " where " +npdbhelper.col_choice_id
-                            +" = "+i,null);
+                            +" = "+random,null);
                     CC = db.rawQuery(" SELECT "+ npdbhelper.col_choice_3+" FROM "+ npdbhelper.table_readcom + " where " +npdbhelper.col_choice_id
-                            +" = "+i,null);
+                            +" = "+random,null);
                     DD = db.rawQuery(" SELECT "+ npdbhelper.col_choice_4+" FROM "+ npdbhelper.table_readcom + " where " +npdbhelper.col_choice_id
-                            +" = "+i,null);
+                            +" = "+random,null);
                     EE = db.rawQuery(" SELECT "+ npdbhelper.col_choice_5+" FROM "+ npdbhelper.table_readcom + " where " +npdbhelper.col_choice_id
-                            +" = "+i,null);
+                            +" = "+random,null);
                     QQ = db.rawQuery(" SELECT "+ npdbhelper.col_readcomQ+" FROM "+ npdbhelper.table_quest + " where " +npdbhelper.col_quest_1
-                            +" = "+i,null);
+                            +" = "+random,null);
                 AA.moveToFirst();BB.moveToFirst();CC.moveToFirst();DD.moveToFirst();EE.moveToFirst();QQ.moveToFirst();ANS.moveToFirst();
                 A = AA.getString(0);B = BB.getString(0);C = CC.getString(0);D = DD.getString(0);E = EE.getString(0);Q = QQ.getString(0);ans = ANS.getString(0);
                 first.setText(A);second.setText(B);third.setText(C);fourth.setText(D);fifth.setText(E);quest.setText(Q);
                 }else{Intent intent=new Intent(getApplicationContext(),test4ExamTitle.class);
                             startActivity(intent); }
 
-                Mathchecking();
                 tempx = "Analogy";
                 radioGroup.clearCheck();
                 }else{
@@ -198,7 +211,7 @@ public class test3 extends AppCompatActivity{
             public void onClick(View v) {
                     selected = 0;
                     selectedList.add(selected);
-                   databaseHelper = new dbhelper(getApplicationContext());
+                   databaseHelper = new npdbhelper(getApplicationContext());
                     sqLiteDatabase = databaseHelper.getReadableDatabase();
                     AA = databaseHelper.getdata(sqLiteDatabase);
                     db = openHelper.getWritableDatabase();
@@ -218,20 +231,24 @@ public class test3 extends AppCompatActivity{
 
                     if (i<10) {
                         i++;
+
+                        int min = 1;
+                        int max = 9;
+                        int random = new Random().nextInt((max - min) + 1) + min;
                         ANS = db.rawQuery(" SELECT "+ npdbhelper.col_readcomAns+" FROM "+ npdbhelper.table_answer + " where " +npdbhelper.col_ans_1
-                                +" = "+i,null);
+                                +" = "+random,null);
                         AA = db.rawQuery(" SELECT "+ npdbhelper.col_choice_1+" FROM "+ npdbhelper.table_readcom + " where " +npdbhelper.col_choice_id
-                                +" = "+i,null);
+                                +" = "+random,null);
                         BB = db.rawQuery(" SELECT "+ npdbhelper.col_choice_2+" FROM "+ npdbhelper.table_readcom + " where " +npdbhelper.col_choice_id
-                                +" = "+i,null);
+                                +" = "+random,null);
                         CC = db.rawQuery(" SELECT "+ npdbhelper.col_choice_3+" FROM "+ npdbhelper.table_readcom + " where " +npdbhelper.col_choice_id
-                                +" = "+i,null);
+                                +" = "+random,null);
                         DD = db.rawQuery(" SELECT "+ npdbhelper.col_choice_4+" FROM "+ npdbhelper.table_readcom + " where " +npdbhelper.col_choice_id
-                                +" = "+i,null);
+                                +" = "+random,null);
                         EE = db.rawQuery(" SELECT "+ npdbhelper.col_choice_5+" FROM "+ npdbhelper.table_readcom + " where " +npdbhelper.col_choice_id
-                                +" = "+i,null);
+                                +" = "+random,null);
                         QQ = db.rawQuery(" SELECT "+ npdbhelper.col_readcomQ+" FROM "+ npdbhelper.table_quest + " where " +npdbhelper.col_quest_1
-                                +" = "+i,null);
+                                +" = "+random,null);
                     AA.moveToFirst();BB.moveToFirst();CC.moveToFirst();DD.moveToFirst();EE.moveToFirst();QQ.moveToFirst();ANS.moveToFirst();
                     A = AA.getString(0);B = BB.getString(0);C = CC.getString(0);D = DD.getString(0);E = EE.getString(0);Q = QQ.getString(0);ans = ANS.getString(0);
                     first.setText(A);second.setText(B);third.setText(C);fourth.setText(D);fifth.setText(E);quest.setText(Q);
@@ -241,7 +258,7 @@ public class test3 extends AppCompatActivity{
                         startActivity(intent);
                     countDownTimer.cancel();
                     countDownTimermin.cancel();
-                        scoreDBHelper.insertdataMATH(countScore, "MATHEMATICS");
+                        scoreDBHelper.insertdataMATH(countScore, "READING COMPREHENSION");
 
                     tempx = "Analogy";}
                     radioGroup.clearCheck();
@@ -253,10 +270,6 @@ public class test3 extends AppCompatActivity{
     public void openDialognoAnswer(){
         Noanswer noanswer = new Noanswer();
         noanswer.show(getSupportFragmentManager(), "Noanswer");
-    }
-    public void Mathchecking(){
-        MathCorrect correct = new MathCorrect();
-        correct.show(getSupportFragmentManager(), "correct");
     }
 
     public static String getText()
@@ -281,7 +294,7 @@ public class test3 extends AppCompatActivity{
         return sub;
     }
 
-    public static ArrayList<String> result()
+    public static ArrayList<String> result_np()
     {
         return compare;
     }

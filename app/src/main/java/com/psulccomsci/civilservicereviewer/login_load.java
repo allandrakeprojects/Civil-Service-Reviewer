@@ -38,6 +38,7 @@ public class login_load extends AppCompatActivity {
 
                 userDBhelper.insert(names, phone, pass, information);
                 Intent intent = new Intent(getApplicationContext(),user_navi.class);
+                intent.putExtra("currentUser", names);
                 startActivity(intent);
             }
 

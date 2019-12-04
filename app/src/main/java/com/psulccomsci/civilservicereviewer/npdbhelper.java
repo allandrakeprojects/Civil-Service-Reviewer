@@ -21,13 +21,13 @@ public class npdbhelper extends SQLiteOpenHelper {
     public static final String table_score = "Score";
     public static final String table_choices = "Choices";
     public static final String table_analogy = "AnalogyChoices";
-    public static final String table_mathematics = "MathChoices";
-    public static final String table_numerical = "NumericalChoices";
-    public static final String table_clerical = "ClericalChoices";
-    public static final String table_grammar = "GrammarChoices";
-    public static final String table_readcom = "ReadcomChoices";
-    public static final String table_vocabulary = "VocabularyChoices";
-    public static final String table_philcons = "PhilConsChoices";
+    public static final String table_mathematics = "MathChoices"; //ok
+    public static final String table_numerical = "NumericalChoices"; //ok
+    public static final String table_clerical = "ClericalChoices"; //ok
+    public static final String table_grammar = "GrammarChoices"; //ok
+    public static final String table_readcom = "ReadcomChoices"; //ok
+    public static final String table_vocabulary = "VocabularyChoices"; //ok
+    public static final String table_philcons = "PhilConsChoices"; //ok
     public static final String table_log_in = "User";
     public static final String table_answer = "Answer";
     public static final String col_ans_1= "ID";
@@ -80,7 +80,7 @@ public class npdbhelper extends SQLiteOpenHelper {
         super(context, DB_NAME, null, 10);
         this.myContext = context;
         this.DB_PATH = "/data/data/" + context.getPackageName() + "/" + "databases/";
-        Log.e("Path 1", DB_PATH);
+        Log.e("Path 1", DB_PATH + " np");
     }
 
 

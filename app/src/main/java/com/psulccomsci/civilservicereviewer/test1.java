@@ -17,6 +17,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class test1 extends AppCompatActivity{
 
@@ -107,23 +108,27 @@ public class test1 extends AppCompatActivity{
         sqLiteDatabase = databaseHelper.getReadableDatabase();
         AA = databaseHelper.getdata(sqLiteDatabase);
         db = openHelper.getWritableDatabase();
+
+        int min = 1;
+        int max = 29;
+        int random = new Random().nextInt((max - min) + 1) + min;
         ANS = db.rawQuery(" SELECT "+ npdbhelper.col_vocabAns+" FROM "+ npdbhelper.table_answer + " where " +npdbhelper.col_ans_1
-                +" = "+i,null);
+                +" = "+random,null);
         AA = db.rawQuery(" SELECT "+ npdbhelper.col_choice_1+" FROM "+ npdbhelper.table_vocabulary + " where " +npdbhelper.col_choice_id
-                +" = "+i,null);
+                +" = "+random,null);
         BB = db.rawQuery(" SELECT "+ npdbhelper.col_choice_2+" FROM "+ npdbhelper.table_vocabulary + " where " +npdbhelper.col_choice_id
-                +" = "+i,null);
+                +" = "+random,null);
         CC = db.rawQuery(" SELECT "+ npdbhelper.col_choice_3+" FROM "+ npdbhelper.table_vocabulary + " where " +npdbhelper.col_choice_id
-                +" = "+i,null);
+                +" = "+random,null);
         DD = db.rawQuery(" SELECT "+ npdbhelper.col_choice_4+" FROM "+ npdbhelper.table_vocabulary + " where " +npdbhelper.col_choice_id
-                +" = "+i,null);
+                +" = "+random,null);
         EE = db.rawQuery(" SELECT "+ npdbhelper.col_choice_5+" FROM "+ npdbhelper.table_vocabulary + " where " +npdbhelper.col_choice_id
-                +" = "+i,null);
+                +" = "+random,null);
         QQ = db.rawQuery(" SELECT "+ npdbhelper.col_vocabularyQ+" FROM "+ npdbhelper.table_quest + " where " +npdbhelper.col_quest_1
-                +" = "+i,null);
+                +" = "+random,null);
         //This area is for adding the generated Math solutions, but for now temporary unavailable.
         solN = db.rawQuery(" SELECT "+ npdbhelper.col_solN+" FROM "+ npdbhelper.table_mathematics + " where " +npdbhelper.col_choice_id
-                        +" = "+i,null);
+                        +" = "+random,null);
         solN.moveToFirst();solution = solN.getString(0);
 
         AA.moveToFirst();BB.moveToFirst();CC.moveToFirst();DD.moveToFirst();EE.moveToFirst();QQ.moveToFirst();ANS.moveToFirst();
@@ -157,37 +162,41 @@ public class test1 extends AppCompatActivity{
                 key.add(keytext);
                     if(ans.equals(x)){
                         countScore++;
-                        restext=text+"  - Correct";
+                        restext=text+"  - Correct test1";
                         compare.add(restext);
                         keytext =ans + " and your answer is correct.";
                     }else{
-                        restext=text+"  - Wrong";
+                        restext=text+"  - Wrong test1";
                         compare.add(restext);
-                        keytext =ans+"\n\n"+"The solution is shown below."+"\n\n"+solution;
+                        keytext =ans;
+                        //+"\n\n"+"The solution is shown below."+"\n\n"+solution
                     }
                 if (i<30) {
                     i++;
+
+                    int min = 1;
+                    int max = 29;
+                    int random = new Random().nextInt((max - min) + 1) + min;
                     ANS = db.rawQuery(" SELECT "+ npdbhelper.col_vocabAns+" FROM "+ npdbhelper.table_answer + " where " +npdbhelper.col_ans_1
-                            +" = "+i,null);
+                            +" = "+random,null);
                     AA = db.rawQuery(" SELECT "+ npdbhelper.col_choice_1+" FROM "+ npdbhelper.table_vocabulary + " where " +npdbhelper.col_choice_id
-                            +" = "+i,null);
+                            +" = "+random,null);
                     BB = db.rawQuery(" SELECT "+ npdbhelper.col_choice_2+" FROM "+ npdbhelper.table_vocabulary + " where " +npdbhelper.col_choice_id
-                            +" = "+i,null);
+                            +" = "+random,null);
                     CC = db.rawQuery(" SELECT "+ npdbhelper.col_choice_3+" FROM "+ npdbhelper.table_vocabulary + " where " +npdbhelper.col_choice_id
-                            +" = "+i,null);
+                            +" = "+random,null);
                     DD = db.rawQuery(" SELECT "+ npdbhelper.col_choice_4+" FROM "+ npdbhelper.table_vocabulary + " where " +npdbhelper.col_choice_id
-                            +" = "+i,null);
+                            +" = "+random,null);
                     EE = db.rawQuery(" SELECT "+ npdbhelper.col_choice_5+" FROM "+ npdbhelper.table_vocabulary + " where " +npdbhelper.col_choice_id
-                            +" = "+i,null);
+                            +" = "+random,null);
                     QQ = db.rawQuery(" SELECT "+ npdbhelper.col_vocabularyQ+" FROM "+ npdbhelper.table_quest + " where " +npdbhelper.col_quest_1
-                            +" = "+i,null);
+                            +" = "+random,null);
                 AA.moveToFirst();BB.moveToFirst();CC.moveToFirst();DD.moveToFirst();EE.moveToFirst();QQ.moveToFirst();ANS.moveToFirst();
                 A = AA.getString(0);B = BB.getString(0);C = CC.getString(0);D = DD.getString(0);E = EE.getString(0);Q = QQ.getString(0);ans = ANS.getString(0);
                 first.setText(A);second.setText(B);third.setText(C);fourth.setText(D);fifth.setText(E);quest.setText(Q);
                 }else{Intent intent=new Intent(getApplicationContext(),test2ExamTitle.class);
                             startActivity(intent); }
 
-                Mathchecking();
                 tempx = "Analogy";
                 radioGroup.clearCheck();
                 }else{
@@ -214,29 +223,33 @@ public class test1 extends AppCompatActivity{
                     listdata.add(textdata);
                     key.add(keytext);
                         if(keytext.equals(text)){
-                            restext=text+"  - Correct";
+                            restext=text+"  - Correct test1";
                             compare.add(restext);
                         }else{
-                            restext=text+"  - Wrong";
+                            restext=text+"  - Wrong test1";
                             compare.add(restext);
                         }
 
                     if (i<30) {
                         i++;
+
+                        int min = 1;
+                        int max = 29;
+                        int random = new Random().nextInt((max - min) + 1) + min;
                         ANS = db.rawQuery(" SELECT "+ npdbhelper.col_vocabAns+" FROM "+ npdbhelper.table_answer + " where " +npdbhelper.col_ans_1
-                                +" = "+i,null);
+                                +" = "+random,null);
                         AA = db.rawQuery(" SELECT "+ npdbhelper.col_choice_1+" FROM "+ npdbhelper.table_vocabulary + " where " +npdbhelper.col_choice_id
-                                +" = "+i,null);
+                                +" = "+random,null);
                         BB = db.rawQuery(" SELECT "+ npdbhelper.col_choice_2+" FROM "+ npdbhelper.table_vocabulary + " where " +npdbhelper.col_choice_id
-                                +" = "+i,null);
+                                +" = "+random,null);
                         CC = db.rawQuery(" SELECT "+ npdbhelper.col_choice_3+" FROM "+ npdbhelper.table_vocabulary + " where " +npdbhelper.col_choice_id
-                                +" = "+i,null);
+                                +" = "+random,null);
                         DD = db.rawQuery(" SELECT "+ npdbhelper.col_choice_4+" FROM "+ npdbhelper.table_vocabulary + " where " +npdbhelper.col_choice_id
-                                +" = "+i,null);
+                                +" = "+random,null);
                         EE = db.rawQuery(" SELECT "+ npdbhelper.col_choice_5+" FROM "+ npdbhelper.table_vocabulary + " where " +npdbhelper.col_choice_id
-                                +" = "+i,null);
+                                +" = "+random,null);
                         QQ = db.rawQuery(" SELECT "+ npdbhelper.col_vocabularyQ+" FROM "+ npdbhelper.table_quest + " where " +npdbhelper.col_quest_1
-                                +" = "+i,null);
+                                +" = "+random,null);
                     AA.moveToFirst();BB.moveToFirst();CC.moveToFirst();DD.moveToFirst();EE.moveToFirst();QQ.moveToFirst();ANS.moveToFirst();
                     A = AA.getString(0);B = BB.getString(0);C = CC.getString(0);D = DD.getString(0);E = EE.getString(0);Q = QQ.getString(0);ans = ANS.getString(0);
                     first.setText(A);second.setText(B);third.setText(C);fourth.setText(D);fifth.setText(E);quest.setText(Q);
@@ -258,10 +271,6 @@ public class test1 extends AppCompatActivity{
     public void openDialognoAnswer(){
         Noanswer noanswer = new Noanswer();
         noanswer.show(getSupportFragmentManager(), "Noanswer");
-    }
-    public void Mathchecking(){
-        MathCorrect correct = new MathCorrect();
-        correct.show(getSupportFragmentManager(), "correct");
     }
 
     public static String getText()
@@ -286,7 +295,7 @@ public class test1 extends AppCompatActivity{
         return sub;
     }
 
-    public static ArrayList<String> result()
+    public static ArrayList<String> result_np()
     {
         return compare;
     }

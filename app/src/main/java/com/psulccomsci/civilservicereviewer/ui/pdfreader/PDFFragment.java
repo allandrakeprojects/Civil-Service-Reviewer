@@ -110,7 +110,7 @@ public class PDFFragment extends Fragment {
         // loop
         Log.d("testtesttest", currentPdf);
 //        Toast.makeText(getContext(), currentPdf, Toast.LENGTH_SHORT).show();
-        
+
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
                 R.layout.listview_layout, R.id.listview_textview, list);
 

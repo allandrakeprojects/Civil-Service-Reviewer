@@ -34,14 +34,14 @@ public class frontforexamnp extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 warning1.speak("Please wait for a moment.",TextToSpeech.QUEUE_FLUSH,null );
-                dbhelper myDbHelper = new dbhelper(frontforexamnp.this);
+                npdbhelper myNPDbHelper = new npdbhelper(frontforexamnp.this);
                 try {
-                    myDbHelper.createDataBase();
+                    myNPDbHelper.createDataBase();
                 } catch (IOException ioe) {
                     throw new Error("Unable to create database");
                 }
                 try {
-                    myDbHelper.openDataBase();
+                    myNPDbHelper.openDataBase();
                 } catch (SQLException sqle) {
                     throw sqle;
                 }

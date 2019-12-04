@@ -16,7 +16,7 @@ public class test6ExamTitle extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exam_title);
         textView = findViewById(R.id.extitle);
-        textView.setText("General Information");
+        textView.setText("Mathematics");
         countDownTimer = new CountDownTimer(2000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {

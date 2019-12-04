@@ -111,7 +111,6 @@ public class Register extends Fragment {
                             phones = pn.getText().toString();
                             passes = pass.getText().toString();
                             Intent intent = new Intent(getContext(), login_load.class);
-                            intent.putExtra("currentUser", names);
                             startActivity(intent);
                         }else{Toast.makeText(getContext(),"Please fill-up necessary information!!!",Toast.LENGTH_SHORT).show();
                         }

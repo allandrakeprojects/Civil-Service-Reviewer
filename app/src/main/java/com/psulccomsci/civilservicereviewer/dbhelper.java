@@ -80,6 +80,7 @@ import java.io.OutputStream;
             this.myContext = context;
             this.DB_PATH = "/data/data/" + context.getPackageName() + "/" + "databases/";
             Log.e("Path 1", DB_PATH);
+            Log.e("Path 1", DB_PATH + " di np");
         }
 
 

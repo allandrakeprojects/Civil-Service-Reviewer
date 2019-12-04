@@ -16,7 +16,7 @@ public class test7ExamTitle extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exam_title);
         textView = findViewById(R.id.extitle);
-        textView.setText("English and Filipino");
+        textView.setText("Philippine Constitution");
         countDownTimer = new CountDownTimer(2000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
