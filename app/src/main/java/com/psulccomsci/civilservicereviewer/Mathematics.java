@@ -1,6 +1,7 @@
 package com.psulccomsci.civilservicereviewer;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -257,7 +258,7 @@ public class Mathematics extends AppCompatActivity{
                         solN = db.rawQuery(" SELECT "+ dbhelper.col_solN+" FROM "+ dbhelper.table_mathematics + " where " +dbhelper.col_choice_id
                                 +" = "+random,null);
                         solN.moveToFirst();solution = solN.getString(0);
-                        
+
                     AA.moveToFirst();BB.moveToFirst();CC.moveToFirst();DD.moveToFirst();EE.moveToFirst();QQ.moveToFirst();ANS.moveToFirst();
                     A = AA.getString(0);B = BB.getString(0);C = CC.getString(0);D = DD.getString(0);E = EE.getString(0);Q = QQ.getString(0);ans = ANS.getString(0);
                     first.setText(A);second.setText(B);third.setText(C);fourth.setText(D);fifth.setText(E);quest.setText(Q);
@@ -267,7 +268,13 @@ public class Mathematics extends AppCompatActivity{
                         startActivity(intent);
                     countDownTimer.cancel();
                     countDownTimermin.cancel();
-                        scoreDBHelper.insertdataMATH(countScore, "MATHEMATICS");
+
+                    // Shared Preference ------------
+                    SharedPreferences sharedPref = getSharedPreferences("mypref", 0);
+                    String currentUser = sharedPref.getString("currentUser", "");
+                    // End ------------
+
+                    scoreDBHelper.insertdataMATH(countScore, "MATHEMATICS", currentUser, "0");
 
                     tempx = "Analogy";}
                     radioGroup.clearCheck();

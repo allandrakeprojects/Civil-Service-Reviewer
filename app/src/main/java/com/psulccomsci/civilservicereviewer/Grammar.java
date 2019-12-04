@@ -1,6 +1,7 @@
 package com.psulccomsci.civilservicereviewer;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -251,7 +252,13 @@ public class Grammar extends AppCompatActivity{
                         startActivity(intent);
                     countDownTimer.cancel();
                     countDownTimermin.cancel();
-                        scoreDBHelper.insertdataMATH(countScore, "GRAMMAR");}
+
+                    // Shared Preference ------------
+                    SharedPreferences sharedPref = getSharedPreferences("mypref", 0);
+                    String currentUser = sharedPref.getString("currentUser", "");
+                    // End ------------
+
+                    scoreDBHelper.insertdataMATH(countScore, "GRAMMAR", currentUser, "0");}
                     radioGroup.clearCheck();
                 temp = ""+i+"";
                 item.setText(temp);

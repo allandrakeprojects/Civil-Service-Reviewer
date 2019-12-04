@@ -1,4 +1,4 @@
-package com.psulccomsci.civilservicereviewer.ui;
+package com.psulccomsci.civilservicereviewer;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

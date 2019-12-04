@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProviders;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -110,6 +111,14 @@ public class Register extends Fragment {
                             names = name.getText().toString();
                             phones = pn.getText().toString();
                             passes = pass.getText().toString();
+
+                            // Shared Preference ------------
+                            SharedPreferences sharedPref = getContext().getSharedPreferences("mypref", 0);
+                            SharedPreferences.Editor editor = sharedPref.edit();
+                            editor.putString("currentUser", name.getText().toString());
+                            editor.commit();
+                            // End ------------
+
                             Intent intent = new Intent(getContext(), login_load.class);
                             startActivity(intent);
                         }else{Toast.makeText(getContext(),"Please fill-up necessary information!!!",Toast.LENGTH_SHORT).show();
@@ -145,7 +154,15 @@ public class Register extends Fragment {
                             }
                             else
                             {
-                                Intent intent = new Intent(getContext(), user_navi.class);
+                                Intent intent = new Intent(getContext(), user_navi.class); // Create object of SharedPreferences.
+
+                                // Shared Preference ------------
+                                SharedPreferences sharedPref = getContext().getSharedPreferences("mypref", 0);
+                                SharedPreferences.Editor editor = sharedPref.edit();
+                                editor.putString("currentUser", name.getText().toString());
+                                editor.commit();
+                                // End ------------
+
                                 intent.putExtra("currentUser", name.getText().toString());
                                 startActivity(intent);
                                 Toast.makeText(getContext(),"Welcome back "+name.getText().toString()+"!!!",Toast.LENGTH_SHORT).show();

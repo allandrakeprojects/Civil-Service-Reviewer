@@ -10,8 +10,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class ScoreDBHelper extends SQLiteOpenHelper {
-    public static final String database_name = "Score Professional";
-    public static final String table_scores = "ScoresProfessional";
+    public static final String database_name = "Scores.db";
+    public static final String table_scores = "tbl_scores";
     //for quiz
     public static final String scoreID = "ID";
     public static final String col_2 = "SCORES";
@@ -40,7 +40,7 @@ public class ScoreDBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db2) {
 
-        db2.execSQL(" CREATE TABLE " + table_scores + "(ID INTEGER PRIMARY KEY AUTOINCREMENT, SCORES TEXT, EXAM TEXT)");
+        db2.execSQL(" CREATE TABLE " + table_scores + "(ID INTEGER PRIMARY KEY AUTOINCREMENT, SCORES TEXT, EXAM TEXT, USER TEXT, TYPE TEXT)");
     }
 
     //if there is existing database it will replace by this new created database
@@ -55,11 +55,13 @@ public class ScoreDBHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public boolean insertdataMATH(int score, String exam) {
+    public boolean insertdataMATH(int score, String exam, String user, String type) {
         SQLiteDatabase db2 = getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("SCORES", score);
         contentValues.put("EXAM", exam);
+        contentValues.put("USER", user);
+        contentValues.put("TYPE", type);
         long result = db2.insert(table_scores, null, contentValues);
         if (result == -1) {
             return false;

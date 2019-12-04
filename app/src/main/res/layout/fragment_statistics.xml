@@ -6,6 +6,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.statistics.StatisticsFragment">
 
+    <Spinner
+        android:id="@+id/spinnerStatistics"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/spinnerStatisticsValue"
+        tools:ignore="MissingConstraints" />
+
     <ScrollView
         android:layout_width="414dp"
         android:layout_height="412dp"
@@ -16,7 +23,6 @@
         app:layout_constraintVertical_bias="0.0">
 
     </ScrollView>
-
 
     <include layout="@layout/activity_stat_list_support" />
     <include layout="@layout/activity_list_of_score" />

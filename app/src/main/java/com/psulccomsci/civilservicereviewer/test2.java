@@ -1,6 +1,7 @@
 package com.psulccomsci.civilservicereviewer;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -195,7 +196,7 @@ public class test2 extends AppCompatActivity{
                 AA.moveToFirst();BB.moveToFirst();CC.moveToFirst();DD.moveToFirst();EE.moveToFirst();QQ.moveToFirst();ANS.moveToFirst();
                 A = AA.getString(0);B = BB.getString(0);C = CC.getString(0);D = DD.getString(0);E = EE.getString(0);Q = QQ.getString(0);ans = ANS.getString(0);
                 first.setText(A);second.setText(B);third.setText(C);fourth.setText(D);fifth.setText(E);quest.setText(Q);
-                }else{Intent intent=new Intent(getApplicationContext(),test3ExamTitle.class);
+                }else{Intent intent=new Intent(getApplicationContext(),result_np.class);
                             startActivity(intent); }
 
                 tempx = "Analogy";
@@ -255,11 +256,17 @@ public class test2 extends AppCompatActivity{
                     first.setText(A);second.setText(B);third.setText(C);fourth.setText(D);fifth.setText(E);quest.setText(Q);
 
 
-                    }else{Intent intent=new Intent(getApplicationContext(),test3ExamTitle.class);
+                    }else{Intent intent=new Intent(getApplicationContext(),result_np.class);
                         startActivity(intent);
                     countDownTimer.cancel();
                     countDownTimermin.cancel();
-                        scoreDBHelper.insertdataMATH(countScore, "GRAMMAR");
+
+                    // Shared Preference ------------
+                    SharedPreferences sharedPref = getSharedPreferences("mypref", 0);
+                    String currentUser = sharedPref.getString("currentUser", "");
+                    // End ------------
+
+                    scoreDBHelper.insertdataMATH(countScore, "GRAMMAR", currentUser, "1");
 
                     tempx = "Analogy";}
                     radioGroup.clearCheck();

@@ -11,6 +11,8 @@
         android:id="@+id/bargraph2"
         android:layout_width="410dp"
         android:layout_height="333dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
