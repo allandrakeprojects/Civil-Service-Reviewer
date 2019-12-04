@@ -55,6 +55,7 @@
         <activity android:name=".statlist" />
         <activity android:name=".statview" />
         <activity android:name=".reader" />
+        <activity android:name=".reader_pdf_home" />
         <activity android:name=".MainActivity" />
         <activity android:name=".ReanswerActivity" />
         <activity android:name=".result" />

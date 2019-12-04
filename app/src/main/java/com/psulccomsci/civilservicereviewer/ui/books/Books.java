@@ -10,15 +10,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.psulccomsci.civilservicereviewer.R;
 import com.psulccomsci.civilservicereviewer.reader;
+import com.psulccomsci.civilservicereviewer.reader_pdf_home;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -39,9 +42,8 @@ public class Books extends Fragment {
         View view = inflater.inflate(R.layout.books_fragment, container, false);
 
         ArrayList<String> list = new ArrayList<>();
-        list.add("Civil Service 2017");
-        list.add("Civil Service 2018");
         list.add("Civil Service 2019");
+        list.add("Civil Service Reviewer");
 
 
         //listItem = getResources().getStringArray(R.array.array_technology);
@@ -57,7 +59,7 @@ public class Books extends Fragment {
                 // TODO Auto-generated method stub
                 String value=adapter.getItem(position);
                 book=value;
-                Intent intent = new Intent(getContext(), reader.class);
+                Intent intent = new Intent(getContext(), reader_pdf_home.class);
                 startActivity(intent);
 
             }

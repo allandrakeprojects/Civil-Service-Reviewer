@@ -195,8 +195,18 @@ public class test1 extends AppCompatActivity{
                 AA.moveToFirst();BB.moveToFirst();CC.moveToFirst();DD.moveToFirst();EE.moveToFirst();QQ.moveToFirst();ANS.moveToFirst();
                 A = AA.getString(0);B = BB.getString(0);C = CC.getString(0);D = DD.getString(0);E = EE.getString(0);Q = QQ.getString(0);ans = ANS.getString(0);
                 first.setText(A);second.setText(B);third.setText(C);fourth.setText(D);fifth.setText(E);quest.setText(Q);
-                }else{Intent intent=new Intent(getApplicationContext(),test2ExamTitle.class);
-                            startActivity(intent); }
+                }else{
+//                        Toast.makeText(test1.this, "VOCABULARY", Toast.LENGTH_SHORT).show();
+                    // Shared Preference ------------
+                    SharedPreferences sharedPref = getSharedPreferences("mypref", 0);
+                    String currentUser = sharedPref.getString("currentUser", "");
+                    // End ------------
+
+                    scoreDBHelper.insertdataMATH(countScore, "VOCABULARY", currentUser, "1");
+
+                    Intent intent=new Intent(getApplicationContext(),test2ExamTitle.class);
+                    startActivity(intent);
+                }
 
                 tempx = "Analogy";
                 radioGroup.clearCheck();
@@ -256,22 +266,26 @@ public class test1 extends AppCompatActivity{
                     first.setText(A);second.setText(B);third.setText(C);fourth.setText(D);fifth.setText(E);quest.setText(Q);
 
 
-                    }else{Intent intent=new Intent(getApplicationContext(),test2ExamTitle.class);
+                    }else{
+//                        Toast.makeText(test1.this, "VOCABULARY", Toast.LENGTH_SHORT).show();
+                        // Shared Preference ------------
+                        SharedPreferences sharedPref = getSharedPreferences("mypref", 0);
+                        String currentUser = sharedPref.getString("currentUser", "");
+                        // End ------------
+
+                        scoreDBHelper.insertdataMATH(countScore, "VOCABULARY", currentUser, "1");
+
+                        Intent intent=new Intent(getApplicationContext(),test2ExamTitle.class);
                         startActivity(intent);
-                    countDownTimer.cancel();
-                    countDownTimermin.cancel();
+                        countDownTimer.cancel();
+                        countDownTimermin.cancel();
 
-                    // Shared Preference ------------
-                    SharedPreferences sharedPref = getSharedPreferences("mypref", 0);
-                    String currentUser = sharedPref.getString("currentUser", "");
-                    // End ------------
+                        tempx = "Analogy";
+                    }
 
-                    scoreDBHelper.insertdataMATH(countScore, "VOCABULARY", currentUser, "1");
-
-                    tempx = "Analogy";}
                     radioGroup.clearCheck();
-                temp = ""+i+"";
-                item.setText(temp);
+                    temp = ""+i+"";
+                    item.setText(temp);
             }
         });
     }

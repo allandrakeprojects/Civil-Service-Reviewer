@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -84,10 +85,10 @@ public class StatisticsFragment extends Fragment {
                     if (counter.getCount()==0){
                         list.add("No Data");
                     }else{
-                        scoretemp = db.rawQuery("SELECT MAX(EXAM), SCORES FROM " + scoreDBHelper.table_scores + " WHERE USER= + '" + currentUser + "'" + " AND TYPE = '0' GROUP BY EXAM", null);
+                        scoretemp = db.rawQuery("SELECT MAX(SCORES), EXAM FROM " + scoreDBHelper.table_scores + " WHERE USER= + '" + currentUser + "'" + " AND TYPE = '0' GROUP BY EXAM", null);
                         while(scoretemp.moveToNext()){
-                            scorer = scoretemp.getString(1);
-                            examname = scoretemp.getString(0);
+                            scorer = scoretemp.getString(0);
+                            examname = scoretemp.getString(1);
                             list.add(examname + " --- Score: " + scorer);
                         }
                     }
@@ -119,32 +120,72 @@ public class StatisticsFragment extends Fragment {
                     count = counter.getCount();
                     if(counter.getCount()==0){
                         NoOfEmp.add(new BarEntry(0, 0));
-                        BarDataSet bardataset = new BarDataSet(NoOfEmp, "Subjects of Exam");
+                        BarDataSet bardataset = new BarDataSet(NoOfEmp, "No Data");
                         chart.animateY(3000);
                         BarData data = new BarData(bardataset);
                         data.setBarWidth(0.9f);
-                        bardataset.setColors(ColorTemplate.COLORFUL_COLORS);
+                        bardataset.setColor(Color.rgb(85, 136, 187));
                         chart.setData(data);
                         chart.setFitBars(true);
                         Toast.makeText(getContext(), "No content available now!!! Please take the exam to record your progress!!!", Toast.LENGTH_SHORT).show();
                     }else{
                         int k = 1;
                         int j = 1;
+                        ArrayList<BarEntry> values1 = new ArrayList<>();
+                        ArrayList<BarEntry> values2 = new ArrayList<>();
+                        ArrayList<BarEntry> values3 = new ArrayList<>();
+                        ArrayList<BarEntry> values4 = new ArrayList<>();
+                        ArrayList<BarEntry> values5 = new ArrayList<>();
+                        ArrayList<BarEntry> values6 = new ArrayList<>();
+                        ArrayList<BarEntry> values7 = new ArrayList<>();
+                        BarDataSet set1, set2, set3, set4, set5, set6, set7;
 
-
-                        scoretemp = db.rawQuery("SELECT MAX(SCORES) FROM "+ scoreDBHelper.table_scores + " WHERE USER= + '" + currentUser + "'" + " AND TYPE = '0' GROUP BY EXAM", null);
+                        scoretemp = db.rawQuery("SELECT MAX(SCORES), EXAM FROM "+ scoreDBHelper.table_scores + " WHERE USER= + '" + currentUser + "'" + " AND TYPE = '0' GROUP BY EXAM", null);
                         while(scoretemp.moveToNext()){
                             scorer = scoretemp.getString(0);
+                            examname = scoretemp.getString(1);
                             j = Integer.parseInt(scorer);
-                            NoOfEmp.add(new BarEntry(k, j));
+//                            NoOfEmp.add(new BarEntry(k, j));
+                            if(examname.equals("ANALOGY")){
+                                values1.add(new BarEntry(k, j));
+                            } else if(examname.equals("CLERICAL")){
+                                values2.add(new BarEntry(k, j));
+                            } else if(examname.equals("GRAMMAR")){
+                                values3.add(new BarEntry(k, j));
+                            } else if(examname.equals("MATHEMATICS")){
+                                values4.add(new BarEntry(k, j));
+                            } else if(examname.equals("NUMERICAL REASONING")){
+                                values5.add(new BarEntry(k, j));
+                            } else if(examname.equals("PHILIPPINE CONSTITUTION")){
+                                values6.add(new BarEntry(k, j));
+                            } else if(examname.equals("VOCABULARY")){
+                                values7.add(new BarEntry(k, j));
+                            }
                             k++;
                         }
 
-                        BarDataSet bardataset = new BarDataSet(NoOfEmp, "Subjects of Exam");
+//                        BarDataSet bardataset = new BarDataSet(NoOfEmp, "Subjects of Exam");
+//                        BarDataSet bardataseta = new BarDataSet(NoOfEmp, "Subjects of Exasdsadadaam");
+
+                        set1 = new BarDataSet(values1, "Analogy");
+                        set1.setColor(Color.rgb(85, 136, 187));
+                        set2 = new BarDataSet(values2, "Clerical");
+                        set2.setColor(Color.rgb(102, 187, 187));
+                        set3 = new BarDataSet(values3, "Grammar");
+                        set3.setColor(Color.rgb(170, 102, 68));
+                        set4 = new BarDataSet(values4, "Math");
+                        set4.setColor(Color.rgb(153, 187, 85));
+                        set5 = new BarDataSet(values5, "Numeral");
+                        set5.setColor(Color.rgb(238, 153, 68));
+                        set6 = new BarDataSet(values6, "Philippine");
+                        set6.setColor(Color.rgb(68, 68, 102));
+                        set7 = new BarDataSet(values7, "Vocabulary");
+                        set7.setColor(Color.rgb(187, 85, 85));
                         chart.animateY(3000);
-                        BarData data = new BarData(bardataset);
+                        BarData data = new BarData(set1, set2, set3, set4, set5, set6, set7);
                         data.setBarWidth(0.9f);
-                        bardataset.setColors(ColorTemplate.COLORFUL_COLORS);
+//                        bardataset.setColors(ColorTemplate.COLORFUL_COLORS);
+//                        bardataseta.setColors(ColorTemplate.COLORFUL_COLORS);
                         chart.setData(data);
                         chart.setFitBars(true);
                     }
@@ -160,10 +201,10 @@ public class StatisticsFragment extends Fragment {
                     if (counter.getCount()==0){
                         list.add("No Data");
                     }else{
-                        scoretemp = db.rawQuery("SELECT MAX(EXAM), SCORES FROM " + scoreDBHelper.table_scores + " WHERE USER= + '" + currentUser + "'" + " AND TYPE = '1' GROUP BY EXAM", null);
+                        scoretemp = db.rawQuery("SELECT MAX(SCORES), EXAM FROM " + scoreDBHelper.table_scores + " WHERE USER= + '" + currentUser + "'" + " AND TYPE = '1' GROUP BY EXAM", null);
                         while(scoretemp.moveToNext()){
-                            scorer = scoretemp.getString(1);
-                            examname = scoretemp.getString(0);
+                            scorer = scoretemp.getString(0);
+                            examname = scoretemp.getString(1);
                             list.add(examname + " --- Score: " + scorer);
                         }
                     }
@@ -195,32 +236,72 @@ public class StatisticsFragment extends Fragment {
                     count = counter.getCount();
                     if(counter.getCount()==0){
                         NoOfEmp.add(new BarEntry(0, 0));
-                        BarDataSet bardataset = new BarDataSet(NoOfEmp, "Subjects of Exam");
+                        BarDataSet bardataset = new BarDataSet(NoOfEmp, "No Data");
                         chart.animateY(3000);
                         BarData data = new BarData(bardataset);
                         data.setBarWidth(0.9f);
-                        bardataset.setColors(ColorTemplate.COLORFUL_COLORS);
+                        bardataset.setColor(Color.rgb(85, 136, 187));
                         chart.setData(data);
                         chart.setFitBars(true);
                         Toast.makeText(getContext(), "No content available now!!! Please take the exam to record your progress!!!", Toast.LENGTH_SHORT).show();
                     }else{
                         int k = 1;
                         int j = 1;
+                        ArrayList<BarEntry> values1 = new ArrayList<>();
+                        ArrayList<BarEntry> values2 = new ArrayList<>();
+                        ArrayList<BarEntry> values3 = new ArrayList<>();
+                        ArrayList<BarEntry> values4 = new ArrayList<>();
+                        ArrayList<BarEntry> values5 = new ArrayList<>();
+                        ArrayList<BarEntry> values6 = new ArrayList<>();
+                        ArrayList<BarEntry> values7 = new ArrayList<>();
+                        BarDataSet set1, set2, set3, set4, set5, set6, set7;
 
-
-                        scoretemp = db.rawQuery("SELECT MAX(SCORES) FROM "+ scoreDBHelper.table_scores + " WHERE USER= + '" + currentUser + "'" + " AND TYPE = '1' GROUP BY EXAM", null);
+                        scoretemp = db.rawQuery("SELECT MAX(SCORES), EXAM FROM "+ scoreDBHelper.table_scores + " WHERE USER= + '" + currentUser + "'" + " AND TYPE = '1' GROUP BY EXAM", null);
                         while(scoretemp.moveToNext()){
                             scorer = scoretemp.getString(0);
+                            examname = scoretemp.getString(1);
                             j = Integer.parseInt(scorer);
-                            NoOfEmp.add(new BarEntry(k, j));
+//                            NoOfEmp.add(new BarEntry(k, j));
+                            if(examname.equals("CLERICAL")){
+                                values1.add(new BarEntry(k, j));
+                            } else if(examname.equals("GRAMMAR")){
+                                values2.add(new BarEntry(k, j));
+                            } else if(examname.equals("MATHEMATICS")){
+                                values3.add(new BarEntry(k, j));
+                            } else if(examname.equals("NUMERAL REASONING")){
+                                values4.add(new BarEntry(k, j));
+                            } else if(examname.equals("PHILIPPINE CONSTITUTION")){
+                                values5.add(new BarEntry(k, j));
+                            } else if(examname.equals("READING COMPREHENSION")){
+                                values6.add(new BarEntry(k, j));
+                            } else if(examname.equals("VOCABULARY")){
+                                values7.add(new BarEntry(k, j));
+                            }
                             k++;
                         }
 
-                        BarDataSet bardataset = new BarDataSet(NoOfEmp, "Subjects of Exam");
+//                        BarDataSet bardataset = new BarDataSet(NoOfEmp, "Subjects of Exam");
+//                        BarDataSet bardataseta = new BarDataSet(NoOfEmp, "Subjects of Exasdsadadaam");
+
+                        set1 = new BarDataSet(values1, "Clerical");
+                        set1.setColor(Color.rgb(85, 136, 187));
+                        set2 = new BarDataSet(values2, "Grammar");
+                        set2.setColor(Color.rgb(102, 187, 187));
+                        set3 = new BarDataSet(values3, "Math");
+                        set3.setColor(Color.rgb(170, 102, 68));
+                        set4 = new BarDataSet(values4, "Numeral");
+                        set4.setColor(Color.rgb(153, 187, 85));
+                        set5 = new BarDataSet(values5, "Philippine");
+                        set5.setColor(Color.rgb(238, 153, 68));
+                        set6 = new BarDataSet(values6, "Reading");
+                        set6.setColor(Color.rgb(68, 68, 102));
+                        set7 = new BarDataSet(values7, "Vocabulary");
+                        set7.setColor(Color.rgb(187, 85, 85));
                         chart.animateY(3000);
-                        BarData data = new BarData(bardataset);
+                        BarData data = new BarData(set1, set2, set3, set4, set5, set6, set7);
                         data.setBarWidth(0.9f);
-                        bardataset.setColors(ColorTemplate.COLORFUL_COLORS);
+//                        bardataset.setColors(ColorTemplate.COLORFUL_COLORS);
+//                        bardataseta.setColors(ColorTemplate.COLORFUL_COLORS);
                         chart.setData(data);
                         chart.setFitBars(true);
                     }

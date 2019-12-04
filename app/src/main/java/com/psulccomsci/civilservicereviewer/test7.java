@@ -63,9 +63,6 @@ public class test7 extends AppCompatActivity{
 
         super.onCreate(savedInstanceState);
         compare = test6.result_np();
-        for (String member : compare){
-            Log.i("Member name: ", member + " test7");
-        }
         setContentView(R.layout.activity_main);
         timerText = findViewById(R.id.timer);
         hour = findViewById(R.id.hour);
@@ -199,8 +196,18 @@ public class test7 extends AppCompatActivity{
                 AA.moveToFirst();BB.moveToFirst();CC.moveToFirst();DD.moveToFirst();EE.moveToFirst();QQ.moveToFirst();ANS.moveToFirst();
                 A = AA.getString(0);B = BB.getString(0);C = CC.getString(0);D = DD.getString(0);E = EE.getString(0);Q = QQ.getString(0);ans = ANS.getString(0);
                 first.setText(A);second.setText(B);third.setText(C);fourth.setText(D);fifth.setText(E);quest.setText(Q);
-                }else{Intent intent=new Intent(getApplicationContext(),result_np.class);
-                            startActivity(intent); }
+                }else{
+//                        Toast.makeText(test7.this, "PHILIPPINE", Toast.LENGTH_SHORT).show();
+                    // Shared Preference ------------
+                    SharedPreferences sharedPref = getSharedPreferences("mypref", 0);
+                    String currentUser = sharedPref.getString("currentUser", "");
+                    // End ------------
+
+                    scoreDBHelper.insertdataMATH(countScore, "PHILIPPINE CONSTITUTION", currentUser, "1");
+
+                    Intent intent=new Intent(getApplicationContext(),result_np.class);
+                    startActivity(intent);
+                }
 
                 radioGroup.clearCheck();
                 }else{
@@ -258,20 +265,24 @@ public class test7 extends AppCompatActivity{
                     first.setText(A);second.setText(B);third.setText(C);fourth.setText(D);fifth.setText(E);quest.setText(Q);
 
 
-                    }else{Intent intent=new Intent(getApplicationContext(),result_np.class);
+                    }else{
+//                        Toast.makeText(test7.this, "PHILIPPINE", Toast.LENGTH_SHORT).show();
+                        // Shared Preference ------------
+                        SharedPreferences sharedPref = getSharedPreferences("mypref", 0);
+                        String currentUser = sharedPref.getString("currentUser", "");
+                        // End ------------
+
+                        scoreDBHelper.insertdataMATH(countScore, "PHILIPPINE CONSTITUTION", currentUser, "1");
+
+                        Intent intent=new Intent(getApplicationContext(),result_np.class);
                         startActivity(intent);
-                    countDownTimer.cancel();
-                    countDownTimermin.cancel();
+                        countDownTimer.cancel();
+                        countDownTimermin.cancel();
+                    }
 
-                    // Shared Preference ------------
-                    SharedPreferences sharedPref = getSharedPreferences("mypref", 0);
-                    String currentUser = sharedPref.getString("currentUser", "");
-                    // End ------------
-
-                    scoreDBHelper.insertdataMATH(countScore, "PHILIPPINE CONSTITUTION", currentUser, "1");}
                     radioGroup.clearCheck();
-                temp = ""+i+"";
-                item.setText(temp);
+                    temp = ""+i+"";
+                    item.setText(temp);
             }
         });
     }

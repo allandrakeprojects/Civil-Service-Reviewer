@@ -199,7 +199,13 @@ public class Mathematics extends AppCompatActivity{
                 A = AA.getString(0);B = BB.getString(0);C = CC.getString(0);D = DD.getString(0);E = EE.getString(0);Q = QQ.getString(0);ans = ANS.getString(0);
                 first.setText(A);second.setText(B);third.setText(C);fourth.setText(D);fifth.setText(E);quest.setText(Q);
                 }else{Intent intent=new Intent(getApplicationContext(),ExamTitle2.class);
-                            startActivity(intent); }
+                            startActivity(intent);
+                    // Shared Preference ------------
+                    SharedPreferences sharedPref = getSharedPreferences("mypref", 0);
+                    String currentUser = sharedPref.getString("currentUser", "");
+                    // End ------------
+
+                    scoreDBHelper.insertdataMATH(countScore, "MATHEMATICS", currentUser, "0");}
 
                 Mathchecking();
                 tempx = "Analogy";
